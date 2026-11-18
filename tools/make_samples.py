@@ -50,6 +50,9 @@ def zip_bytes(members: dict[str, bytes]) -> bytes:
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
         for name, data in members.items():
             info = zipfile.ZipInfo(name, date_time=(2026, 11, 16, 8, 0, 0))
+            # zipfile records the OS it runs on (0 = Windows, 3 = Unix) in the "made by" field.
+            # Pin it so the generated sample is byte-identical on every platform.
+            info.create_system = 0
             archive.writestr(info, data)
     return buffer.getvalue()
 
