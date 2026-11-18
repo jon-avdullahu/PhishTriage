@@ -67,8 +67,14 @@ Export-SecurityReport -Path .\report.html -Triage $triage -Vulnerability $vuln `
 | Suite | Count | What it covers |
 |---|---|---|
 | pytest | 137 | Domain logic (homoglyphs, typos, punycode), parsing, every indicator, verdict thresholds, golden results for all 7 samples, CLI, config validation, defanging, samples match their generator |
-| Pester | 33 | The PowerShell module end to end with the real Python engine, KPI maths on known data, German locale, bad-input errors, HTML encoding |
+| Pester | 34 | The PowerShell module end to end with the real Python engine, KPI maths on known data, German locale, bad-input errors, HTML encoding |
 | KqlCheck | 6 + 4 | Every query is parsed and analysed with Microsoft's `Kusto.Language` against the table schemas (unknown tables, misspelt columns, type errors); 4 deliberately broken queries must be rejected |
+
+**Do the tests catch bugs?** I planted five bugs on purpose: believing the attacker's authentication header,
+accepting the simulation header without the platform domain, allowing one typo fewer in look-alike detection,
+not escaping `<` in the HTML report, and counting a finding as overdue on its due date. The tests fail for the
+first four. The fifth cannot change any result (days overdue is 0 on the due date either way); a boundary test now
+documents the rule.
 
 CI (GitHub Actions) runs ruff, pytest on Python 3.11 and 3.13, PSScriptAnalyzer, Pester on PowerShell 7 **and**
 Windows PowerShell 5.1, and the KQL check.

@@ -218,6 +218,14 @@ Describe 'Get-VulnerabilityKpi' {
         }
     }
 
+    It 'is not overdue on the due date itself, only from the day after' {
+        $path = Write-TestCsv 'edge.csv' @('Id,Title,Severity,Site,Opened,Closed', 'V-1,t,Critical,HQ,2026-11-11,')
+        (Get-VulnerabilityKpi -Path $path -AsOf ([datetime]'2026-11-18')).Overdue | Should -Be 0
+        $next = Get-VulnerabilityKpi -Path $path -AsOf ([datetime]'2026-11-19')
+        $next.Overdue | Should -Be 1
+        $next.OverdueFindings[0].DaysOverdue | Should -Be 1
+    }
+
     It 'uses custom SLA deadlines' {
         $loose = Get-VulnerabilityKpi -Path (Join-Path $script:Samples 'vulnerabilities.csv') -AsOf ([datetime]'2026-11-18') `
             -SlaDays ([ordered]@{ Critical = 30; High = 60; Medium = 365; Low = 365 })
