@@ -1,0 +1,14 @@
+Authentication-Results: mx.contoso.com; spf=pass smtp.mailfrom=mailbox-direct.example; dkim=pass header.d=mailbox-direct.example; dmarc=pass header.from=mailbox-direct.example
+Received: from mx.mailbox-direct.example (mx.mailbox-direct.example [198.51.100.140]) by mx.contoso.com with ESMTPS; Mon, 16 Nov 2026 08:12:00 +0100
+From: "Anna Becker" <anna.becker.office@mailbox-direct.example>
+Reply-To: anna.becker.private@other-mail.example
+To: max.mustermann@contoso.com
+Subject: Quick favour
+Date: Mon, 16 Nov 2026 08:12:00 +0100
+Message-ID: <q-9921@mailbox-direct.example>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hi, are you at your desk? I need you to buy gift cards for a client today.
+Please keep this confidential, I am in meetings all day.
+Anna

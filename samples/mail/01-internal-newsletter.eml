@@ -1,0 +1,22 @@
+Authentication-Results: mx.contoso.com; spf=pass smtp.mailfrom=contoso.com; dkim=pass header.d=contoso.com; dmarc=pass header.from=contoso.com
+Received: from mail.contoso.com (mail.contoso.com [198.51.100.10]) by mx.contoso.com with ESMTPS; Mon, 16 Nov 2026 08:12:00 +0100
+From: "Contoso Communications" <comms@contoso.com>
+To: max.mustermann@contoso.com
+Subject: Weekly update: canteen hours and new coffee machines
+Date: Mon, 16 Nov 2026 08:12:00 +0100
+Message-ID: <newsletter-2026-47@contoso.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="alt-0001"
+
+--alt-0001
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+This week: new coffee machines on floor 3, and the canteen closes early on Friday.
+Read the full update: https://intranet.contoso.com/news/2026-47
+--alt-0001
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<p>This week: new coffee machines on floor 3, and the canteen closes early on Friday.</p><p><a href="https://intranet.contoso.com/news/2026-47">Read the full update</a> on <a href="https://intranet.contoso.com/">intranet.contoso.com</a>.</p>
+--alt-0001--

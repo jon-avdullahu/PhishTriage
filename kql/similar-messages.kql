@@ -1,0 +1,23 @@
+// Purpose: Find every copy of a reported phishing mail, so all of them can be removed, not just the reported one.
+// Tables:  EmailEvents, EmailUrlInfo (Microsoft Defender XDR advanced hunting)
+// Inputs:  copy sender, subject and domains from the PhishTriage result (refang the domains first).
+let Lookback = 14d;
+let ReportedSender = "it-support@c0ntoso.com";
+let ReportedSubject = "Action required: your password expires today";
+let ReportedDomains = dynamic(["c0ntoso.com", "contoso-sso.example"]);
+let BySender = EmailEvents
+    | where Timestamp > ago(Lookback)
+    | where SenderFromAddress =~ ReportedSender
+        or SenderMailFromAddress =~ ReportedSender
+        or Subject == ReportedSubject
+    | project NetworkMessageId;
+let ByUrl = EmailUrlInfo
+    | where Timestamp > ago(Lookback)
+    | where UrlDomain in~ (ReportedDomains)
+    | project NetworkMessageId;
+union BySender, ByUrl
+| distinct NetworkMessageId
+| join kind=inner (EmailEvents | where Timestamp > ago(Lookback)) on NetworkMessageId
+| project Timestamp, NetworkMessageId, RecipientEmailAddress, SenderFromAddress, Subject,
+    DeliveryAction, DeliveryLocation, ThreatTypes
+| order by Timestamp desc

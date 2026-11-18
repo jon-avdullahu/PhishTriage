@@ -1,0 +1,13 @@
+Id,Title,Severity,Site,Owner,Opened,Closed
+VULN-101,Outdated VPN client on laptops,Critical,Berlin HQ,IT Workplace,2026-11-02,
+VULN-102,Browser zero-day patch missing,Critical,Plant A,Site IT Plant A,2026-11-12,2026-11-14
+VULN-103,SMBv1 enabled on file server,High,Plant B,Site IT Plant B,2026-09-20,
+VULN-104,Expired TLS certificate on intranet,High,Berlin HQ,IT Infrastructure,2026-10-01,2026-10-20
+VULN-105,Local admin rights on shop-floor PCs,High,Plant A,Site IT Plant A,2026-10-30,
+VULN-106,Unsupported Windows 10 build,Medium,Plant B,Site IT Plant B,2026-07-01,
+VULN-107,Weak password policy on printer admin pages,Medium,Berlin HQ,IT Workplace,2026-08-15,2026-09-30
+VULN-108,PDF reader update missing,Medium,Erlangen,IT Workplace,2026-10-05,
+VULN-109,Guest Wi-Fi not isolated from printers,High,Erlangen,IT Infrastructure,2026-11-10,
+VULN-110,Verbose server banner,Low,Berlin HQ,IT Infrastructure,2026-03-01,
+VULN-111,Old Java runtime on engineering workstations,Medium,Plant A,Site IT Plant A,2026-06-01,2026-10-15
+VULN-112,Missing security headers on visitor portal,Low,Plant B,Site IT Plant B,2026-09-01,2026-10-01

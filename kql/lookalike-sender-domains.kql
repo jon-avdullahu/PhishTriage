@@ -1,0 +1,19 @@
+// Purpose: Inbound mail from domains that contain our name but are not ours (c0ntoso.com, contoso-login.example).
+// Tables:  EmailEvents (Microsoft Defender XDR advanced hunting)
+// Tuning:  add domains we own or trust to OwnDomains; digits commonly used as letters are mapped back first.
+let Lookback = 30d;
+let OwnDomains = dynamic(["contoso.com"]);
+let OurName = "contoso";
+EmailEvents
+| where Timestamp > ago(Lookback)
+| where EmailDirection == "Inbound"
+| where SenderFromDomain !in~ (OwnDomains)
+| extend Skeleton = translate("01345", "oleas", tolower(SenderFromDomain))
+| where Skeleton contains OurName
+| summarize Messages = count(),
+    Recipients = dcount(RecipientEmailAddress),
+    Delivered = countif(DeliveryAction == "Delivered"),
+    FirstSeen = min(Timestamp),
+    ExampleSubjects = make_set(Subject, 5)
+    by SenderFromDomain
+| order by Delivered desc, Messages desc

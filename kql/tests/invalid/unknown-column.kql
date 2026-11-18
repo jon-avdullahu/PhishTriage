@@ -1,0 +1,3 @@
+// Misspelt column: the real column is SenderFromDomain.
+EmailEvents
+| where SenderDomain == "c0ntoso.com"

@@ -1,0 +1,21 @@
+// Purpose: Attachments that run code, carry macros or hide behind a double extension, and still reached a mailbox.
+// Tables:  EmailAttachmentInfo, EmailEvents (Microsoft Defender XDR advanced hunting)
+let Lookback = 7d;
+let Executable = dynamic(["exe", "scr", "js", "jse", "vbs", "vbe", "wsf", "hta", "lnk", "msi", "ps1", "jar",
+    "iso", "img", "vhd", "vhdx", "one", "cpl"]);
+let Macro = dynamic(["docm", "dotm", "xlsm", "xltm", "xlam", "pptm"]);
+let Html = dynamic(["html", "htm", "shtml", "svg"]);
+EmailAttachmentInfo
+| where Timestamp > ago(Lookback)
+| extend Extension = tolower(tostring(split(FileName, ".")[-1]))
+| extend DoubleExtension = FileName matches regex @"(?i)\.(pdf|docx?|xlsx?|pptx?|jpe?g|png|txt)\.[a-z0-9]+$"
+| where Extension in (Executable) or Extension in (Macro) or Extension in (Html) or DoubleExtension
+| join kind=inner (
+    EmailEvents
+    | where Timestamp > ago(Lookback)
+    | where DeliveryAction == "Delivered"
+    | project NetworkMessageId, RecipientEmailAddress, Subject, DeliveryLocation
+    ) on NetworkMessageId, RecipientEmailAddress
+| project Timestamp, RecipientEmailAddress, SenderFromAddress, Subject, FileName, Extension, DoubleExtension,
+    SHA256, DeliveryLocation
+| order by Timestamp desc

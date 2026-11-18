@@ -1,0 +1,11 @@
+{
+  "org_domains": ["contoso.com"],
+  "org_names": ["Contoso"],
+  "vip_names": ["Anna Becker"],
+  "trusted_authserv_ids": ["mx.contoso.com"],
+  "shortener_domains": ["bit.ly", "tinyurl.com", "t.co", "goo.gl", "ow.ly", "is.gd", "buff.ly", "rebrand.ly", "cutt.ly", "shorturl.at"],
+  "simulation_headers": ["X-Contoso-PhishSim"],
+  "simulation_sender_domains": ["contoso-training.example"],
+  "phishing_threshold": 60,
+  "suspicious_threshold": 25
+}

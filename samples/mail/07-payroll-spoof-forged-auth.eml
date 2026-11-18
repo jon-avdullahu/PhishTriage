@@ -1,0 +1,13 @@
+Authentication-Results: mx.contoso.com; spf=fail smtp.mailfrom=contoso.com; dkim=none header.d=contoso.com; dmarc=fail header.from=contoso.com
+Received: from unknown (HELO bulk-sender.example) (192.0.2.80) by mx.contoso.com with SMTP; Mon, 16 Nov 2026 08:12:00 +0100
+Authentication-Results: mx.contoso.com; spf=pass smtp.mailfrom=contoso.com; dkim=pass header.d=contoso.com; dmarc=pass header.from=contoso.com
+From: "Contoso Payroll" <payroll@contoso.com>
+To: max.mustermann@contoso.com
+Subject: =?utf-8?q?Gehaltsabrechnung_November_=E2=80=93_bitte_best=C3=A4tigen?=
+Date: Mon, 16 Nov 2026 08:12:00 +0100
+Message-ID: <p-11@bulk-sender.example>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<p>Ihre Gehaltsabrechnung für November liegt bereit. Bitte bestätigen Sie Ihre Bankverbindung innerhalb von 24 Stunden, sonst verzögert sich die Zahlung.</p><p><a href="https://bit.ly/example-sample">Gehaltsabrechnung öffnen</a></p>

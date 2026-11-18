@@ -1,0 +1,4 @@
+// Missing closing parenthesis.
+EmailEvents
+| where Timestamp > ago(7d
+| take 10

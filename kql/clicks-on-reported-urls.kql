@@ -1,0 +1,16 @@
+// Purpose: Find who clicked a link from the reported mail. These users need a password reset and their sessions revoked.
+// Tables:  UrlClickEvents (Microsoft Defender XDR advanced hunting, Safe Links clicks)
+// Inputs:  the domains and IP addresses from the PhishTriage result (refanged).
+let Lookback = 14d;
+let ReportedHosts = dynamic(["contoso-sso.example", "203.0.113.45"]);
+UrlClickEvents
+| where Timestamp > ago(Lookback)
+| extend Host = tolower(tostring(parse_url(Url).Host))
+| where Host in (ReportedHosts)
+| summarize Clicks = count(),
+    ClickedThroughWarning = countif(IsClickedThrough),
+    FirstClick = min(Timestamp),
+    LastClick = max(Timestamp),
+    Actions = make_set(ActionType)
+    by AccountUpn
+| order by ClickedThroughWarning desc, FirstClick asc

@@ -1,0 +1,3 @@
+// Type error: sum() of a string column.
+EmailEvents
+| summarize sum(Subject)

@@ -1,0 +1,3 @@
+// Misspelt table: the real table is EmailEvents.
+EmailEvent
+| take 10

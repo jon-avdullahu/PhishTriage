@@ -1,0 +1,12 @@
+Authentication-Results: mx.contoso.com; spf=softfail smtp.mailfrom=secure-mfa-alerts.example; dkim=none; dmarc=none
+Received: from vps-4471.example (vps-4471.example [203.0.113.45]) by mx.contoso.com with ESMTPS; Mon, 16 Nov 2026 08:12:00 +0100
+From: "M365 Sicherheitsteam" <no-reply@secure-mfa-alerts.example>
+To: max.mustermann@contoso.com
+Subject: =?utf-8?q?Ihr_Authenticator_muss_neu_registriert_werden?=
+Date: Mon, 16 Nov 2026 08:12:00 +0100
+Message-ID: <mfa-77120@secure-mfa-alerts.example>
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<p>Hallo,</p><p>Ihr Authenticator muss <b>dringend</b> neu registriert werden. Andernfalls wird Ihr Konto gesperrt.</p><p>Bitte melden Sie sich sofort hier an: <a href="http://203.0.113.45/mfa/register">https://aka.contoso.com/mfa</a></p><p>Ihr IT-Team</p>

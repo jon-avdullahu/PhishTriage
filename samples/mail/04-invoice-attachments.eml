@@ -1,0 +1,35 @@
+Authentication-Results: mx.contoso.com; spf=pass smtp.mailfrom=fabrikam-billing.example; dkim=pass header.d=fabrikam-billing.example; dmarc=pass header.from=fabrikam-billing.example
+Received: from out.fabrikam-billing.example (out.fabrikam-billing.example [198.51.100.77]) by mx.contoso.com with ESMTPS; Mon, 16 Nov 2026 08:12:00 +0100
+From: "Fabrikam Accounts" <accounts@fabrikam-billing.example>
+Reply-To: payments@transfer-desk.example
+To: max.mustermann@contoso.com
+Subject: Rechnung November 2026 / Invoice 4471
+Date: Mon, 16 Nov 2026 08:12:00 +0100
+Message-ID: <inv-4471@fabrikam-billing.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="mix-0004"
+
+--mix-0004
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Please find invoice 4471 attached. Payment is overdue, please pay immediately.
+Bitte begleichen Sie die Rechnung sofort.
+--mix-0004
+Content-Type: application/zip; name="Rechnung_2026-11.zip"
+Content-Disposition: attachment; filename="Rechnung_2026-11.zip"
+Content-Transfer-Encoding: base64
+
+UEsDBBQAAAAAAABAcF301d6INwAAADcAAAAXAAAAUmVjaG51bmdfMjAyNi0xMS5wZGYuanMvLyBQ
+bGFjZWhvbGRlciBmb3IgdGVzdHMuIE5vdCBtYWx3YXJlOyBuZXZlciBleGVjdXRlZC4KUEsBAhQA
+FAAAAAAAAEBwXfTV3og3AAAANwAAABcAAAAAAAAAAAAAAIABAAAAAFJlY2hudW5nXzIwMjYtMTEu
+cGRmLmpzUEsFBgAAAAABAAEARQAAAGwAAAAAAA==
+
+--mix-0004
+Content-Type: application/vnd.ms-excel.sheet.macroEnabled.12; name="Invoice_4471.xlsm"
+Content-Disposition: attachment; filename="Invoice_4471.xlsm"
+Content-Transfer-Encoding: base64
+
+UGxhY2Vob2xkZXIgZm9yIHRlc3RzLCBub3QgYSByZWFsIHdvcmtib29rLgo=
+
+--mix-0004--

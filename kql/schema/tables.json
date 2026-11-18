@@ -1,0 +1,129 @@
+{
+  "_comment": "Subset of the Microsoft Defender XDR advanced hunting and Microsoft Sentinel schemas, transcribed from the linked Microsoft Learn pages. Only used to check the queries offline.",
+  "tables": {
+    "EmailEvents": {
+      "docs": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailevents-table",
+      "columns": {
+        "Timestamp": "datetime",
+        "NetworkMessageId": "string",
+        "InternetMessageId": "string",
+        "SenderMailFromAddress": "string",
+        "SenderFromAddress": "string",
+        "SenderDisplayName": "string",
+        "SenderObjectId": "string",
+        "SenderMailFromDomain": "string",
+        "SenderFromDomain": "string",
+        "SenderIPv4": "string",
+        "SenderIPv6": "string",
+        "RecipientEmailAddress": "string",
+        "RecipientObjectId": "string",
+        "Subject": "string",
+        "EmailClusterId": "long",
+        "EmailDirection": "string",
+        "DeliveryAction": "string",
+        "DeliveryLocation": "string",
+        "ThreatTypes": "string",
+        "ThreatNames": "string",
+        "DetectionMethods": "string",
+        "ConfidenceLevel": "string",
+        "BulkComplaintLevel": "int",
+        "EmailAction": "string",
+        "EmailActionPolicy": "string",
+        "AuthenticationDetails": "string",
+        "AttachmentCount": "int",
+        "UrlCount": "int",
+        "EmailLanguage": "string",
+        "Connectors": "string",
+        "OrgLevelAction": "string",
+        "UserLevelAction": "string",
+        "ReportId": "string"
+      }
+    },
+    "EmailUrlInfo": {
+      "docs": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailurlinfo-table",
+      "columns": {
+        "Timestamp": "datetime",
+        "NetworkMessageId": "string",
+        "Url": "string",
+        "UrlDomain": "string",
+        "UrlLocation": "string",
+        "ReportId": "string"
+      }
+    },
+    "EmailAttachmentInfo": {
+      "docs": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailattachmentinfo-table",
+      "columns": {
+        "Timestamp": "datetime",
+        "NetworkMessageId": "string",
+        "SenderFromAddress": "string",
+        "SenderDisplayName": "string",
+        "SenderObjectId": "string",
+        "RecipientEmailAddress": "string",
+        "RecipientObjectId": "string",
+        "FileName": "string",
+        "FileType": "string",
+        "SHA256": "string",
+        "FileSize": "long",
+        "ThreatTypes": "string",
+        "ThreatNames": "string",
+        "DetectionMethods": "string",
+        "ReportId": "string"
+      }
+    },
+    "UrlClickEvents": {
+      "docs": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-urlclickevents-table",
+      "columns": {
+        "Timestamp": "datetime",
+        "Url": "string",
+        "ActionType": "string",
+        "AccountUpn": "string",
+        "Workload": "string",
+        "NetworkMessageId": "string",
+        "ThreatTypes": "string",
+        "DetectionMethods": "string",
+        "IPAddress": "string",
+        "IsClickedThrough": "bool",
+        "UrlChain": "string",
+        "ReportId": "string"
+      }
+    },
+    "SigninLogs": {
+      "docs": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/signinlogs",
+      "columns": {
+        "TimeGenerated": "datetime",
+        "UserPrincipalName": "string",
+        "UserDisplayName": "string",
+        "ResultType": "string",
+        "ResultDescription": "string",
+        "IPAddress": "string",
+        "AppDisplayName": "string",
+        "ClientAppUsed": "string",
+        "ConditionalAccessStatus": "string",
+        "AuthenticationRequirement": "string",
+        "Location": "string",
+        "Status": "dynamic",
+        "DeviceDetail": "dynamic",
+        "CorrelationId": "string"
+      }
+    },
+    "DeviceTvmSoftwareVulnerabilities": {
+      "docs": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicetvmsoftwarevulnerabilities-table",
+      "columns": {
+        "DeviceId": "string",
+        "DeviceName": "string",
+        "OSPlatform": "string",
+        "OSVersion": "string",
+        "OSArchitecture": "string",
+        "SoftwareVendor": "string",
+        "SoftwareName": "string",
+        "SoftwareVersion": "string",
+        "CveId": "string",
+        "VulnerabilitySeverityLevel": "string",
+        "RecommendedSecurityUpdate": "string",
+        "RecommendedSecurityUpdateId": "string",
+        "CveTags": "dynamic",
+        "CveMitigationStatus": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+// Purpose: Many denied MFA prompts for one user within an hour (MFA fatigue / push bombing), and whether one was then accepted.
+// Tables:  SigninLogs (Microsoft Sentinel, Entra ID sign-in logs)
+// Note:    result 500121 = strong authentication failed or was denied by the user; "0" = successful sign-in.
+let Lookback = 1d;
+let Window = 1h;
+let Threshold = 5;
+let MfaDenied = "500121";
+SigninLogs
+| where TimeGenerated > ago(Lookback)
+| where ResultType in (MfaDenied, "0")
+| summarize Denied = countif(ResultType == MfaDenied),
+    Succeeded = countif(ResultType == "0"),
+    IPAddresses = make_set(IPAddress, 10),
+    Apps = make_set(AppDisplayName, 10)
+    by UserPrincipalName, Hour = bin(TimeGenerated, Window)
+| where Denied >= Threshold
+| extend Assessment = iff(Succeeded > 0,
+    "Prompts followed by a successful sign-in: treat as compromised until checked",
+    "Repeated MFA prompts: call the user, then reset the password")
+| order by Succeeded desc, Denied desc

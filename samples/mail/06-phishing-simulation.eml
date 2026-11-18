@@ -1,0 +1,12 @@
+Authentication-Results: mx.contoso.com; spf=pass smtp.mailfrom=contoso-training.example; dkim=pass header.d=contoso-training.example; dmarc=pass header.from=contoso-training.example
+Received: from send.contoso-training.example (send.contoso-training.example [198.51.100.200]) by mx.contoso.com with ESMTPS; Mon, 16 Nov 2026 08:12:00 +0100
+From: "IT Service Desk" <servicedesk@contoso-training.example>
+To: max.mustermann@contoso.com
+Subject: Your mailbox is almost full
+Date: Mon, 16 Nov 2026 08:12:00 +0100
+Message-ID: <sim-2026-q4-01-0042@contoso-training.example>
+X-Contoso-PhishSim: campaign=2026-Q4-01
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+<p>Your mailbox is almost full. <a href="https://contoso-training.example/c/8f2a">Review your mailbox settings</a> to keep receiving mail.</p>
